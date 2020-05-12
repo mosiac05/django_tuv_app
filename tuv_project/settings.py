@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '9aw80ucc8i3bw$$j-w8m(2y3_aoj=9
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # export DJANGO_DEBUG=False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['theunitedvoices.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
