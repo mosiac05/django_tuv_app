@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% load static %}
+  {% block body_block %}
+  <!-- bradcam_area  -->
+  <div class="bradcam_area" style="background-image: url({% static 'img/bradcam_2.png' %})">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text text-center">
+                      <h3>Test me</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    {% if images %}
+      {% for image in images %}
+        <img src="/media/img/post/{{ image }}" alt="{{ MEDIA_URL }}img/post/{{ image }}">
+      {% endfor %}
+    {% else %}
+      <p>No images found!</p>
+    {% endif %}
+      <p>{{footer.0.about_us}}</p>
+      <p>{{footer.0.facebook_link}}</p>
+  {% endblock %}

@@ -1,0 +1,192 @@
+{% extends 'layout.html' %}
+{% load static %}
+  {% block body_block %}
+
+  {% if banner %}
+  <!-- slider_area_start -->
+  <div class="slider_area">
+      <div class="single_slider  d-flex align-items-center overlay2" style="background-image: url(/media/{{ banner.banner_image }})">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="slider_text text-center ">
+                          <h3>{{ banner.banner_text }} </h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- slider_area_end -->
+  {% endif %}
+
+  {% if featured_song %}
+  <!-- music_area  -->
+  <div class="music_area">
+      <div class="container">
+          <div class="row align-items-center justify-content-center">
+              <div class="col-xl-10">
+                  <div class="row align-items-center">
+                              <div class="col-xl-9 col-md-9">
+                                  <div class="music_field">
+                                          <div class="thumb">
+                                                  <img src="/media/{{ featured_song.song.song_image }}" alt="">
+                                              </div>
+                                              <div class="audio_name">
+                                                  <div class="name">
+                                                      <h4>{{ featured_song.song.song_title }}</h4>
+                                                      <p>{{ featured_song.song.song_upload_date }}</p>
+                                                  </div>
+                                                      <audio preload="auto" controls>
+                                                              <source src="/media/{{ featured_song.song.song_file }}">
+                                                          </audio>
+                                              </div>
+                                  </div>
+                              </div>
+                              <div class="col-xl-3 col-md-3">
+                                  <div class="music_btn">
+                                          <a href="/media/{{ featured_song.song.song_file }}" class="boxed-btn" download>Download</a>
+                                  </div>
+                              </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+  <!-- music_area end  -->
+  {% endif %}
+
+  {% if footer %}
+  <!-- about_area  -->
+  <div class="about_area">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-xl-5 col-md-6">
+                  <div class="about_thumb">
+                      <img class="img-fluid" src="/media/{{ footer.about_image }}" alt="">
+                  </div>
+              </div>
+              <div class="col-xl-7 col-md-6">
+                  <div class="about_info">
+                      <h3>The United Voices</h3>
+                      <p>{{ footer.about_us }}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--/ about_area  -->
+  {% endif %}
+
+  {% if videos %}
+  <!-- youtube_video_area  -->
+  <div class="youtube_video_area">
+      <div class="container-fluid p-0">
+          <div class="row no-gutters">
+            {% for video in videos %}
+              <div class="col-xl-3 col-lg-3 col-md-6">
+                  <div class="single_video">
+                      <div class="thumb">
+                          <img src="/media/{{ video.video_image }}" alt="">
+                      </div>
+                      <div class="hover_elements">
+                          <div class="video">
+                                  <a class="popup-video" href="{{ video.video_link }}">
+                                          <i class="fa fa-play"></i>
+                                      </a>
+                          </div>
+
+                          <div class="hover_inner">
+                              <span>{{video.video_title}}</span>
+                              <h3><a href="#">{{video.video_event_name}}</a></h3>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+  <!-- / youtube_video_area  -->
+  {% endif %}
+
+  {% if songs %}
+  <!-- music_area  -->
+  <div class="music_area music_gallery">
+      <div class="container">
+              <div class="row">
+                      <div class="col-xl-12">
+                          <div class="section_title text-center mb-65">
+                              <h3>Latest Tracks</h3>
+                          </div>
+                      </div>
+                  </div>
+          {% for song in songs %}
+          <div class="row align-items-center justify-content-center mb-20">
+              <div class="col-xl-10">
+                  <div class="row align-items-center">
+                              <div class="col-xl-9 col-md-9">
+                                  <div class="music_field">
+                                          <div class="thumb">
+                                                  <img src="/media/{{ song.song_image }}" alt="">
+                                              </div>
+                                              <div class="audio_name">
+                                                  <div class="name">
+                                                      <h4>{{ song.song_title }}</h4>
+                                                      <p>{{ song.song_upload_date }}</p>
+                                                  </div>
+                                                      <audio preload="auto" controls>
+                                                              <source src="/media/{{ song.song_file }}">
+                                                          </audio>
+                                              </div>
+                                  </div>
+                              </div>
+                              <div class="col-xl-3 col-md-3">
+                                  <div class="music_btn">
+                                          <a href="/media/{{ song.song_file }}" class="boxed-btn" download>Download</a>
+                                  </div>
+                              </div>
+                  </div>
+              </div>
+
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+  <!-- music_area end  -->
+      {% endif %}
+
+
+      {% if gallery_images %}
+          <!-- gallery -->
+          <div class="gallery_area">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-xl-12">
+                          <div class="section_title text-center mb-65">
+                              <h3>Image Galleries</h3>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row grid">
+                    {% for g_image in gallery_images %}
+                          <div class="col-xl-4 col-lg-6 grid-item cat2 col-md-6">
+                              <div class="single-gallery mb-30">
+                                  <div class="portfolio-img">
+                                          <img src="/media/{{ g_image.image }}" alt="">
+                                  </div>
+                                  <div class="gallery_hover">
+                                          <a class="popup-image" href="/media/{{ g_image.image }}" class="hover_inner">
+                                              <i class="ti-plus"></i>
+                                          </a>
+                                      </div>
+                              </div>
+                          </div>
+                    {% endfor %}
+                      </div>
+              </div>
+          </div>
+          <!--/ gallery -->
+          {% endif %}
+{% endblock %}

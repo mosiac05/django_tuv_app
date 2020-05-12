@@ -1,0 +1,120 @@
+Logo
+	logoImage(ImageField, upload_to='uploads/logos')
+
+Banner
+	bannerImage(ImageField, upload_to='uploads/banners')
+	bannerText(CharField, 50)
+
+Song
+	songTitle(CharField, 50)
+	songFile(FileField, upload_to='uploads/songs') i.e media/uploads/songs
+	songUploadDate(DateTimeField, auto_now=True)
+	songImage(ImageField, upload_to='uploads/songs')
+
+FeaturedSong(Song)
+
+Video
+	videoTitle(CharField, 50)
+	videoEventName(CharField, 100)
+	videoLink(URLField, 254)
+	videoImage(ImageField, upload_to='uploads/videos')
+
+FeaturedVideo(Video)
+
+GalleryImage
+	imageName(ImageField, upload_to='uploads/gallery')
+
+NewsLetter
+	userEmail(EmailField, 254)
+
+Contact
+	contactMessage(TextField)
+	contactName(CharField, 50)
+	contactEmail(EmailField, 254)
+	contactSubject(CharField, 100)
+
+Footer
+	aboutUs(TextField)
+	aboutImage(ImageField, upload_to='uploads/about')
+	footerText(CharField, 254)
+	emailAddress(EmailField, 254)
+	phoneNumber(CharField, 50)
+	callTime(CharField, 100)
+	residentAddress(CharField, 254)
+	postalCode(CharField, 50)
+	fbLink(URLField, 254)
+	twitLink(URLField, 254)
+	youtubeLink(URLField, 254)
+	instagramLink(URLField, 254)
+
+
+
+	# context['banner'] = 'uploads/banners/bridge.png'
+	# context['featured_song_image'] = 'img/music_man/1.png'
+	# context['featured_song_link'] = 'https://red.com'
+	# context['about_image'] = 'img/about/about_1.png'
+	# context['about_signature'] = 'img/about/signature.png'
+	# context['video_image'] = 'img/video/1.png'
+	# other_video = ['1', '2', '3']
+	# text_video = ['First', 'Second', 'Third']
+	# context['videos'] = zip(other_video, text_video)
+	#
+	# song_list = ['Praise','Worship','Lifted']
+	# song_author = ['Sam','Dan','Paul']
+	# song_link = ['www','com','opl']
+	# context['song_image'] = 'img/music_man/1.png'
+	# context['songs'] = zip(song_list,song_author,song_link)
+	#
+	# context['gallery_images'] = ['img/gallery/4.png','img/gallery/4.png','img/gallery/4.png','img/gallery/4.png']
+	#
+	# img_list = os.listdir(path + '/img/post')
+	# context['images'] = img_list
+
+
+	# from tuv_app.models import Contact
+
+	# class ContactForm(forms.ModelForm):
+	#     class Meta():
+	#         model = Contact
+	#         fields = ('contact_message','contact_name','contact_email','contact_subject')
+	#
+	#         widgets = {
+	#             'contact_message':forms.Textarea(
+	#                                     attrs={
+	#                                         'class':"form-control w-100",
+	#                                         'id':"message",
+	#                                         'cols':"30",
+	#                                         'rows':"9",
+	#                                         'onfocus':"this.placeholder = ''",
+	#                                         'onblur':"this.placeholder = 'Enter Message'",
+	#                                         'placeholder':'Enter Message'
+	#                                     }
+	#                             ),
+	#             'contact_name':forms.TextInput(
+	#                                     attrs={
+	#                                         'class':"form-control",
+	#                                         'id':"name",
+	#                                         'onfocus':"this.placeholder = ''",
+	#                                         'onblur':"this.placeholder = 'Enter your name'",
+	#                                         'placeholder':'Enter your name'
+	#                                     }
+	#                                 ),
+	#             'contact_email':forms.EmailInput(
+	#                                     attrs={
+	#                                         'class':"form-control",
+	#                                         'id':"email",
+	#                                         'onfocus':"this.placeholder = ''",
+	#                                         'onblur':"this.placeholder = 'Enter email address'",
+	#                                         'placeholder':'Enter email address'
+	#                                     }
+	#                             ),
+	#             'contact_subject': forms.TextInput(
+	#                                     attrs={
+	#                                         'class':"form-control",
+	#                                         'id':"subject",
+	#                                         'onfocus':"this.placeholder = ''",
+	#                                         'onblur':"this.placeholder = 'Enter subject'",
+	#                                         'placeholder':'Enter subject'
+	#                                     },
+	#                             )
+	#         }

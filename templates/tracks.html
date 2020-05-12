@@ -1,0 +1,147 @@
+{% extends 'layout.html' %}
+{% load static %}
+  {% block body_block %}
+
+  {% if banner %}
+  <!-- bradcam_area  -->
+  <div class="bradcam_area" style="background-image: url(/media/{{ banner.banner_image }})">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text text-center">
+                      <h3>Our Tracks</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--/ bradcam_area  -->
+  {% endif %}
+
+
+    {% if songs %}
+    <!-- music_area  -->
+    <div class="music_area music_gallery">
+        <div class="container">
+                <div class="row">
+                        <div class="col-xl-12">
+                            <div class="section_title text-center mb-65">
+                                <h3>Listen and Download</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" id="download_msg" style="visibility: hidden;">
+                      <p class="align-items-center justify-content-center mb-20 alert alert-info">Your download will start shortly!</p>
+                    </div>
+            {% for song in songs %}
+            <div class="row align-items-center justify-content-center mb-20">
+                <div class="col-xl-10">
+                    <div class="row align-items-center">
+                                <div class="col-xl-9 col-md-9">
+                                    <div class="music_field">
+                                            <div class="thumb">
+                                                    <img src="/media/{{ song.song_image }}" alt="">
+                                                </div>
+                                                <div class="audio_name">
+                                                    <div class="name">
+                                                        <h4>{{ song.song_title }}</h4>
+                                                        <p>{{ song.song_upload_date }}</p>
+                                                    </div>
+                                                        <audio preload="auto" controls>
+                                                                <source src="/media/{{ song.song_file }}">
+                                                            </audio>
+                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-3">
+                                    <div class="music_btn">
+                                            <a href="/media/{{ song.song_file }}" class="boxed-btn" onclick="document.getElementById('download_msg').style.visibility='visible'" download>Download</a>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+            {% if is_paginated %}
+            <nav class="blog-pagination justify-content-center d-flex">
+                <ul class="pagination">
+                  {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous">
+                            <i class="ti-angle-left"></i>
+                        </a>
+                    </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                      <a href="#" class="page-link" aria-label="Previous">
+                          <i class="ti-angle-left"></i>
+                      </a>
+                  </li>
+                  {% endif %}
+                  {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                      <li class="page-item active">
+                          <a href="#" class="page-link">{{ i }}</a>
+                      </li>
+                    {% else %}
+                      <li class="page-item">
+                          <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ page_obj.next_page_number }}" class="page-link" aria-label="Next">
+                            <i class="ti-angle-right"></i>
+                        </a>
+                    </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                      <a href="#" class="page-link" aria-label="Next">
+                          <i class="ti-angle-right"></i>
+                      </a>
+                  </li>
+                  {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+    <!-- music_area end  -->
+        {% endif %}
+
+          {% if videos %}
+          <!-- youtube_video_area  -->
+          <div class="youtube_video_area">
+              <div class="container-fluid p-0">
+                  <div class="row no-gutters">
+                    {% for video in videos %}
+                      <div class="col-xl-3 col-lg-3 col-md-6">
+                          <div class="single_video">
+                              <div class="thumb">
+                                  <img src="/media/{{ video.video_image }}" alt="">
+                              </div>
+                              <div class="hover_elements">
+                                  <div class="video">
+                                          <a class="popup-video" href="{{ video.video_link }}">
+                                                  <i class="fa fa-play"></i>
+                                              </a>
+                                  </div>
+
+                                  <div class="hover_inner">
+                                      <span>{{video.video_title}}</span>
+                                      <h3><a href="#">{{video.video_event_name}}</a></h3>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+              </div>
+          </div>
+          <!-- / youtube_video_area  -->
+          {% endif %}
+    <br>
+      {% endblock %}

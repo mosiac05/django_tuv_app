@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% load static %}
+  {% block body_block %}
+
+  {% if banner %}
+  <!-- bradcam_area  -->
+  <div class="bradcam_area" style="background-image: url(/media/{{ banner.banner_image }})">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text text-center">
+                      <h3>About Us</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--/ bradcam_area  -->
+  {% endif %}
+
+  {% if footer %}
+    <!-- about_area  -->
+    <div class="about_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-5 col-md-6">
+                    <div class="about_thumb">
+                        <img class="img-fluid" src="/media/{{ footer.about_image }}" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-7 col-md-6">
+                    <div class="about_info">
+                        <h3>The United Voices</h3>
+                        <p>{{ footer.about_us }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ about_area  -->
+    {% endif %}
+
+    {% if featured_video %}
+    <div class="singer_video">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="image">
+                        <img src="/media/{{ featured_video.video.video_image }}" alt="">
+                        <div class="video_btn">
+                            <a class="popup-video" href="{{ featured_video.video.video_link }}"><i class="fa fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% if gallery_images %}
+    <!-- gallery -->
+    <div class="gallery_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-65">
+                        <h3>Image Galleries</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row grid">
+              {% for g_image in gallery_images %}
+                    <div class="col-xl-4 col-lg-6 grid-item cat2 col-md-6">
+                        <div class="single-gallery mb-30">
+                            <div class="portfolio-img">
+                                    <img src="/media/{{ g_image.image }}" alt="">
+                            </div>
+                            <div class="gallery_hover">
+                                    <a class="popup-image" href="/media/{{ g_image.image }}" class="hover_inner">
+                                        <i class="ti-plus"></i>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+    <!--/ gallery -->
+{% endif %}
+<br>
+  {% endblock %}
