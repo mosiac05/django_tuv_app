@@ -1,6 +1,5 @@
 import os
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.views.generic import View,TemplateView,ListView
 from django.conf import settings
 from django.templatetags.static import static
@@ -8,7 +7,7 @@ from django.urls import reverse
 from tuv_app.models import Logo,Banner,Album,Song,FeaturedSong,Video,FeaturedVideo,GalleryImage,Contact,Footer
 from tuv_app.forms import ContactForm
 # Create your views here.
-footer = Footer.objects.first()
+footer = Footer.objects.all()
 banner = Banner.objects.order_by('?').first()
 albums = Album.objects.all()
 
@@ -24,7 +23,7 @@ class HomePage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['footer'] = footer
+        context['footer'] = footer[0]
         context['banner'] = banner
         context['song_albums'] = albums
 
@@ -52,7 +51,7 @@ class AboutPage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['footer'] = footer
+        context['footer'] = footer[0]
         context['banner'] = banner
         context['song_albums'] = albums
 
@@ -77,7 +76,7 @@ class TracksPage(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['footer'] = footer
+        context['footer'] = footer[0]
         context['banner'] = banner
         context['song_albums'] = albums
 
@@ -102,12 +101,12 @@ def contact(request):
             contact.contact_message = form.cleaned_data['message']
             contact.save()
             submitted = True
-            return render(request, 'contact.html', {'submitted': submitted, 'footer': footer, 'banner': banner, 'song_albums': albums})
+            return render(request, 'contact.html', {'submitted': submitted, 'footer': footer[0], 'banner': banner, 'song_albums': albums})
     else:
         form = ContactForm()
-    return render(request, 'contact.html', {'form': form, 'song_albums': albums, 'submitted': submitted, 'footer': footer, 'banner': banner,})
+    return render(request, 'contact.html', {'form': form, 'song_albums': albums, 'submitted': submitted, 'footer': footer[0], 'banner': banner,})
 
 
 def album(request, pk):
     songs = Song.objects.filter(album=pk).order_by('song_upload_date')
-    return render(request, 'tracks.html', {'songs': songs, 'banner': banner, 'footer': footer, 'song_albums': albums})
+    return render(request, 'tracks.html', {'songs': songs, 'banner': banner, 'footer': footer[0], 'song_albums': albums})
