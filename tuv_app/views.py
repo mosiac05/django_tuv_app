@@ -23,8 +23,8 @@ class HomePage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['footer'] = footer[0]
-        context['banner'] = banner[0]
+        context['footer'] = footer[:1]
+        context['banner'] = banner[:1]
         context['song_albums'] = albums
 
         featured_song = FeaturedSong.objects.first()
@@ -51,8 +51,8 @@ class AboutPage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['footer'] = footer[0]
-        context['banner'] = banner[0]
+        context['footer'] = footer[:1]
+        context['banner'] = banner[:1]
         context['song_albums'] = albums
 
         featured_video = FeaturedVideo.objects.first()
@@ -76,8 +76,8 @@ class TracksPage(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['footer'] = footer[0]
-        context['banner'] = banner[0]
+        context['footer'] = footer[:1]
+        context['banner'] = banner[:1]
         context['song_albums'] = albums
 
         videos = Video.objects.order_by('?')[:5]
@@ -101,12 +101,12 @@ def contact(request):
             contact.contact_message = form.cleaned_data['message']
             contact.save()
             submitted = True
-            return render(request, 'contact.html', {'submitted': submitted, 'footer': footer[0], 'banner': banner[0], 'song_albums': albums})
+            return render(request, 'contact.html', {'submitted': submitted, 'footer': footer[:1], 'banner': banner[:1], 'song_albums': albums})
     else:
         form = ContactForm()
-    return render(request, 'contact.html', {'form': form, 'song_albums': albums, 'submitted': submitted, 'footer': footer[0], 'banner': banner[0],})
+    return render(request, 'contact.html', {'form': form, 'song_albums': albums, 'submitted': submitted, 'footer': footer[:1], 'banner': banner[:1],})
 
 
 def album(request, pk):
     songs = Song.objects.filter(album=pk).order_by('song_upload_date')
-    return render(request, 'tracks.html', {'songs': songs, 'banner': banner[0], 'footer': footer[0], 'song_albums': albums})
+    return render(request, 'tracks.html', {'songs': songs, 'banner': banner[:1], 'footer': footer[:1], 'song_albums': albums})
