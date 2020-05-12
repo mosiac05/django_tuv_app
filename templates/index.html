@@ -5,12 +5,12 @@
   {% if banner %}
   <!-- slider_area_start -->
   <div class="slider_area">
-      <div class="single_slider  d-flex align-items-center overlay2" style="background-image: url(/media/{{ banner.banner_image }})">
+      <div class="single_slider  d-flex align-items-center overlay2" style="background-image: url(/media/{{ banner.0.banner_image }})">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
                       <div class="slider_text text-center ">
-                          <h3>{{ banner.banner_text }} </h3>
+                          <h3>{{ banner.0.banner_text }} </h3>
                       </div>
                   </div>
               </div>
@@ -64,13 +64,13 @@
           <div class="row align-items-center">
               <div class="col-xl-5 col-md-6">
                   <div class="about_thumb">
-                      <img class="img-fluid" src="/media/{{ footer.about_image }}" alt="">
+                      <img class="img-fluid" src="/media/{{ footer.0.about_image }}" alt="">
                   </div>
               </div>
               <div class="col-xl-7 col-md-6">
                   <div class="about_info">
                       <h3>The United Voices</h3>
-                      <p>{{ footer.about_us }}</p>
+                      <p>{{ footer.0.about_us }}</p>
                   </div>
               </div>
           </div>
