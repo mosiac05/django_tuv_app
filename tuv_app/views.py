@@ -8,7 +8,7 @@ from tuv_app.models import Logo,Banner,Album,Song,FeaturedSong,Video,FeaturedVid
 from tuv_app.forms import ContactForm
 # Create your views here.
 footer = Footer.objects.all()
-banner = Banner.objects.order_by('?').first()
+banner = Banner.objects.order_by('?')
 albums = Album.objects.all()
 
 context = {}
@@ -24,7 +24,7 @@ class HomePage(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context['footer'] = footer[0]
-        context['banner'] = banner
+        context['banner'] = banner[0]
         context['song_albums'] = albums
 
         featured_song = FeaturedSong.objects.first()
@@ -52,7 +52,7 @@ class AboutPage(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context['footer'] = footer[0]
-        context['banner'] = banner
+        context['banner'] = banner[0]
         context['song_albums'] = albums
 
         featured_video = FeaturedVideo.objects.first()
@@ -77,7 +77,7 @@ class TracksPage(ListView):
         context = super().get_context_data(**kwargs)
 
         context['footer'] = footer[0]
-        context['banner'] = banner
+        context['banner'] = banner[0]
         context['song_albums'] = albums
 
         videos = Video.objects.order_by('?')[:5]
@@ -101,12 +101,12 @@ def contact(request):
             contact.contact_message = form.cleaned_data['message']
             contact.save()
             submitted = True
-            return render(request, 'contact.html', {'submitted': submitted, 'footer': footer[0], 'banner': banner, 'song_albums': albums})
+            return render(request, 'contact.html', {'submitted': submitted, 'footer': footer[0], 'banner': banner[0], 'song_albums': albums})
     else:
         form = ContactForm()
-    return render(request, 'contact.html', {'form': form, 'song_albums': albums, 'submitted': submitted, 'footer': footer[0], 'banner': banner,})
+    return render(request, 'contact.html', {'form': form, 'song_albums': albums, 'submitted': submitted, 'footer': footer[0], 'banner': banner[0],})
 
 
 def album(request, pk):
     songs = Song.objects.filter(album=pk).order_by('song_upload_date')
-    return render(request, 'tracks.html', {'songs': songs, 'banner': banner, 'footer': footer[0], 'song_albums': albums})
+    return render(request, 'tracks.html', {'songs': songs, 'banner': banner[0], 'footer': footer[0], 'song_albums': albums})
