@@ -28,9 +28,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '9aw80ucc8i3bw$$j-w8m(2y3_aoj=9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-export DJANGO_DEBUG=False
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
-
+# export DJANGO_DEBUG=False
 
 ALLOWED_HOSTS = []
 
@@ -138,3 +137,8 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 django_heroku.settings(locals())
+
+# Heroku: Update database confiuration from $DATABASE_URL
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
