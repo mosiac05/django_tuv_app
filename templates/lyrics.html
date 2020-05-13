@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% load static %}
+  {% block body_block %}
+
+  {% if banner %}
+  <!-- bradcam_area  -->
+  <div class="bradcam_area" style="background-image: url(/media/{{ banner.0.banner_image }})">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text text-center">
+                      <h3>Lyrics</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--/ bradcam_area  -->
+  {% endif %}
+
+{% if single_song %}
+    <!-- music_area  -->
+    <div class="music_area music_gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-65">
+                        <h3>{{ single_song.song_title|safe }}</h3>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="align-items-center justify-content-center mb-20 alert outline-dark">
+              <p>{{ single_song.song_lyrics|safe|linebreaksbr }}</p>
+            </div>
+            <div class="col-xl-3 col-md-3">
+              <div class="music_btn">
+                <a href="{{ single_song.song_link }}" class="boxed-btn" target="_blank">Download</a>
+              </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    {% endif %}
+    <!-- music_area end  -->
+
+      {% if songs %}
+      <!-- music_area  -->
+      <div class="music_area music_gallery">
+          <div class="container">
+                  <div class="row">
+                          <div class="col-xl-12">
+                              <div class="section_title text-center mb-65">
+                                  <h3>Latest Tracks</h3>
+                              </div>
+                          </div>
+                      </div>
+              {% for song in songs %}
+              <div class="row align-items-center justify-content-center mb-20">
+                  <div class="col-xl-10">
+                      <div class="row align-items-center">
+                                  <div class="col-xl-9 col-md-9">
+                                      <div class="music_field">
+                                              <div class="thumb">
+                                                      <img src="/media/{{ song.song_image }}" alt="">
+                                                  </div>
+                                                  <div class="audio_name">
+                                                      <div class="name">
+                                                          <h4>{{ song.song_title }}</h4>
+                                                          <p>{{ song.song_upload_date }}</p>
+                                                          <div class="col-xl-3 col-md-3">
+                                                            <div class="music_btn">
+                                                              <a href="{{ song.song_link }}" class="boxed-btn" target="_blank">Download</a>
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-xl-3 col-md-3">
+                                    <div class="music_btn">
+                                      <a href="{% url 'tuv_app:lyrics' pk=song.pk %}" class="boxed-btn">Lyrics</a>
+                                    </div>
+                                  </div>
+                      </div>
+                  </div>
+
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+      <!-- music_area end  -->
+          {% endif %}
+
+    <br>
+      {% endblock %}

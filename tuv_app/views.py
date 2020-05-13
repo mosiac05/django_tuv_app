@@ -110,3 +110,8 @@ def contact(request):
 def album(request, pk):
     songs = Song.objects.filter(album=pk).order_by('song_upload_date')
     return render(request, 'tracks.html', {'songs': songs, 'banner': banner[:1], 'footer': footer[:1], 'song_albums': albums})
+
+def lyrics(request, pk):
+    single_song = Song.objects.filter(pk=pk).first()
+    songs = Song.objects.order_by('song_upload_date')[:5]
+    return render(request, 'lyrics.html', {'single_song': single_song, 'songs': songs, 'banner': banner[:1]})

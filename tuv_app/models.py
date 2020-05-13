@@ -36,9 +36,10 @@ class Album(models.Model):
 
 class Song(models.Model):
     song_title = models.CharField(max_length=50)
-    song_file = models.FileField(upload_to='uploads/songs')
+    song_link = models.URLField(max_length=254)
     song_upload_date = models.DateTimeField(auto_now=True)
     song_image = models.ImageField(upload_to='uploads/songs')
+    song_lyrics = models.TextField()
     album = models.ForeignKey('Album', on_delete=models.CASCADE)
 
     def __str__(self):

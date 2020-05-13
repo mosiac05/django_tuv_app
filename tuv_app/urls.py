@@ -11,6 +11,7 @@ urlpatterns = [
     path('tracks/', views.TracksPage.as_view(), name='tracks'),
     path('contact/', views.contact, name='contact'),
     path('album/<pk>', views.album, name='album'),
+    path('lyrics/<pk>', views.lyrics, name='lyrics'),
 ]
 
 if settings.DEBUG:

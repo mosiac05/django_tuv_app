@@ -4,7 +4,7 @@
 
   {% if banner %}
   <!-- bradcam_area  -->
-  <div class="bradcam_area" style="background-image: url(/media/{{ banner.banner_image }})">
+  <div class="bradcam_area" style="background-image: url(/media/{{ banner.0.banner_image }})">
       <div class="container">
           <div class="row">
               <div class="col-xl-12">
@@ -46,17 +46,19 @@
                                                     <div class="name">
                                                         <h4>{{ song.song_title }}</h4>
                                                         <p>{{ song.song_upload_date }}</p>
+                                                        <div class="col-xl-3 col-md-3">
+                                                          <div class="music_btn">
+                                                            <a href="{{ song.song_link }}" class="boxed-btn" target="_blank">Download</a>
+                                                          </div>
+                                                        </div>
                                                     </div>
-                                                        <audio preload="auto" controls>
-                                                                <source src="/media/{{ song.song_file }}">
-                                                            </audio>
                                                 </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-3">
-                                    <div class="music_btn">
-                                            <a href="/media/{{ song.song_file }}" class="boxed-btn" onclick="document.getElementById('download_msg').style.visibility='visible'" download>Download</a>
-                                    </div>
+                                  <div class="music_btn">
+                                    <a href="{% url 'tuv_app:lyrics' pk=song.pk%}" class="boxed-btn">Lyrics</a>
+                                  </div>
                                 </div>
                     </div>
                 </div>

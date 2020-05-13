@@ -4,7 +4,7 @@
 
   {% if banner %}
   <!-- bradcam_area  -->
-  <div class="bradcam_area" style="background-image: url(/media/{{ banner.banner_image }})">
+  <div class="bradcam_area" style="background-image: url(/media/{{ banner.0.banner_image }})">
       <div class="container">
           <div class="row">
               <div class="col-xl-12">
@@ -115,21 +115,21 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
-              <h3>{{ footer.resident_address }}</h3>
-              <p>{{ footer.postal_code }}</p>
+              <h3>{{ footer.0.resident_address }}</h3>
+              <p>{{ footer.0.postal_code }}</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3>{{ footer.phone_number }}</h3>
-              <p>{{ footer.call_time }}</p>
+              <h3>{{ footer.0.phone_number }}</h3>
+              <p>{{ footer.0.call_time }}</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3>{{ footer.email_address }}</h3>
+              <h3>{{ footer.0.email_address }}</h3>
               <p>Send us your query anytime!</p>
             </div>
           </div>

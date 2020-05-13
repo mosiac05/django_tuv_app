@@ -36,17 +36,19 @@
                                                   <div class="name">
                                                       <h4>{{ featured_song.song.song_title }}</h4>
                                                       <p>{{ featured_song.song.song_upload_date }}</p>
+                                                      <div class="col-xl-3 col-md-3">
+                                                        <div class="music_btn">
+                                                          <a href="{{ featured_song.song.song_link }}" class="boxed-btn" target="_blank">Download</a>
+                                                        </div>
+                                                      </div>
                                                   </div>
-                                                      <audio preload="auto" controls>
-                                                              <source src="/media/{{ featured_song.song.song_file }}">
-                                                          </audio>
                                               </div>
                                   </div>
                               </div>
                               <div class="col-xl-3 col-md-3">
-                                  <div class="music_btn">
-                                          <a href="/media/{{ featured_song.song.song_file }}" class="boxed-btn" download>Download</a>
-                                  </div>
+                                <div class="music_btn" style="border: powderblue !important;">
+                                  <a href="{{ featured_song.song.song_link }}" class="boxed-btn" target="_blank">Lyrics</a>
+                                </div>
                               </div>
                   </div>
               </div>
@@ -135,17 +137,19 @@
                                                   <div class="name">
                                                       <h4>{{ song.song_title }}</h4>
                                                       <p>{{ song.song_upload_date }}</p>
+                                                      <div class="col-xl-3 col-md-3">
+                                                        <div class="music_btn">
+                                                          <a href="{{ song.song_link }}" class="boxed-btn" target="_blank">Download</a>
+                                                        </div>
+                                                      </div>
                                                   </div>
-                                                      <audio preload="auto" controls>
-                                                              <source src="/media/{{ song.song_file }}">
-                                                          </audio>
                                               </div>
                                   </div>
                               </div>
                               <div class="col-xl-3 col-md-3">
-                                  <div class="music_btn">
-                                          <a href="/media/{{ song.song_file }}" class="boxed-btn" download>Download</a>
-                                  </div>
+                                <div class="music_btn">
+                                  <a href="{% url 'tuv_app:lyrics' pk=song.pk%}" class="boxed-btn">Lyrics</a>
+                                </div>
                               </div>
                   </div>
               </div>
